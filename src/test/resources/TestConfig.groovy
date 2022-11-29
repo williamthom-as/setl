@@ -1,5 +1,10 @@
 source {
-    stream csv, "some_file"
+    stream {
+        type csv
+        opts {
+            filepath "some_file"
+        }
+    }
 
     variables {
         VARIABLE_1 = "var_1"

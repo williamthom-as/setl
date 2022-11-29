@@ -1,19 +1,20 @@
 package as.williamthom.setl.dsl
 
 import as.williamthom.setl.dsl.content.ContentBuilder
+import as.williamthom.setl.dsl.stream.StreamBuilder
 
 class SourceDslBuilder {
-
-    FileType fileType
-    String location
 
     final Map<String, String> variables = [:]
 
     ContentBuilder content
+    StreamBuilder stream
 
-    void stream(FileType fileType, String location) {
-        this.fileType = fileType
-        this.location = location
+    void stream(@DelegatesTo(value = StreamBuilder, strategy = Closure.DELEGATE_FIRST) final Closure closure) {
+        stream = new StreamBuilder()
+        closure.delegate = stream
+        closure.resolveStrategy = Closure.DELEGATE_ONLY
+        closure.call()
     }
 
     void variables(@DelegatesTo(value = Map, strategy = Closure.DELEGATE_FIRST) final Closure closure) {
@@ -29,9 +30,7 @@ class SourceDslBuilder {
         content.sections.each {it.init() }
     }
 
-    final FileType csv = FileType.CSV
 
-    enum FileType {
-        CSV
-    }
 }
+
+
