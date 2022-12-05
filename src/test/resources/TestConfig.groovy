@@ -1,34 +1,18 @@
-source {
-    stream {
-        type csv
-        opts {
-            filepath "some_file"
-        }
-    }
-
-    variables {
-        VARIABLE_1 = "var_1"
-        VARIABLE_2 = "var_2"
-    }
-
-    content {
-        section(1, 10) {
-            headers(0)
-
-            workflow {
-                stage("build") {
-
-                }
-
-                stage("transform") {
-                    column("col_1").extract.all.capitalize.shorten(4).mapTo("col_1_output")
-                    column("col_2").extract.all.mapTo("col_2")
-                }
-
-                stage("export") {
-                    output
-                }
-            }
-        }
+input {
+    type("CSV") {
+        filepath "some_file"
+        headers 0
     }
 }
+
+//process {
+//    // ignore first n records
+//
+//    identity("col_1").extract(all).capitalize.shorten(4).lengthen(4, "x").mapTo("col_1_output")
+//    identity("col_3").extract.all.variableReplace("VARIABLE_1").mapTo("col_3_output")
+//    identity("col_2").extract.all.mapTo("col_2")
+//}
+//
+//output {
+//
+//}
