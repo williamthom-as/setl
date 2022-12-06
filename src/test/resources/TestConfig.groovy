@@ -1,5 +1,5 @@
 input {
-    type("CSV") {
+    type(csv) {
         filepath "some_file"
         headers 0
     }
@@ -12,7 +12,7 @@ input {
 //    identity("col_3").extract.all.variableReplace("VARIABLE_1").mapTo("col_3_output")
 //    identity("col_2").extract.all.mapTo("col_2")
 //}
-//
-//output {
-//
-//}
+
+output {
+
+}

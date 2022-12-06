@@ -1,4 +1,4 @@
-package as.williamthom.setl.dsl.stream
+package as.williamthom.setl.dsl.stream.impl
 
 import java.lang.reflect.ParameterizedType
 

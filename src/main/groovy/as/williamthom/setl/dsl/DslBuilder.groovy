@@ -1,48 +1,29 @@
 package as.williamthom.setl.dsl
 
-import as.williamthom.setl.dsl.stream.AbstractStreamImpl
-import as.williamthom.setl.dsl.stream.CSVStreamImpl
+import as.williamthom.setl.dsl.stream.InputStreamBuilder
+import as.williamthom.setl.dsl.stream.OutputStreamBuilder
 
 class DslBuilder {
 
-    InputBuilder inputBuilder
+    InputStreamBuilder inputBuilder
+    OutputStreamBuilder outputBuilder
 
-    void input(@DelegatesTo(value = InputBuilder, strategy = Closure.DELEGATE_ONLY) final Closure closure) {
-        this.inputBuilder = new InputBuilder()
+    void input(@DelegatesTo(value = InputStreamBuilder, strategy = Closure.DELEGATE_ONLY) final Closure closure) {
+        this.inputBuilder = new InputStreamBuilder()
 
         closure.delegate = inputBuilder
         closure.resolveStrategy = Closure.DELEGATE_ONLY
         closure.call()
+    }
 
-        this.inputBuilder.streamType.description()
+    void output(@DelegatesTo(value = OutputStreamBuilder, strategy = Closure.DELEGATE_ONLY) final Closure closure) {
+        this.outputBuilder = new OutputStreamBuilder()
+
+        closure.delegate = outputBuilder
+        closure.resolveStrategy = Closure.DELEGATE_ONLY
+        closure.call()
     }
 }
 
-class InputBuilder {
 
-    StreamType streamType
 
-    void type(String streamType, final Closure closure) {
-        this.streamType = StreamType.valueOf(streamType)
-        this.streamType.setImplParams(closure)
-    }
-
-}
-
-enum StreamType {
-    CSV(CSVStreamImpl)
-
-    AbstractStreamImpl stream
-
-    StreamType(Class<? extends AbstractStreamImpl> stream) {
-        this.stream = stream.getDeclaredConstructor().newInstance()
-    }
-
-    void setImplParams(final Closure closure) {
-        stream.setImplParams(closure)
-    }
-
-    void description() {
-        this.stream.description()
-    }
-}

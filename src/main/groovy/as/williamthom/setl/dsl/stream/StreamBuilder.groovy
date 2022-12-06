@@ -1,5 +1,8 @@
 package as.williamthom.setl.dsl.stream
 
+import as.williamthom.setl.dsl.stream.impl.AbstractStreamImpl
+import as.williamthom.setl.dsl.stream.impl.CSVStreamImpl
+
 class StreamBuilder {
     FileType fileType
     Map opts = [:]
