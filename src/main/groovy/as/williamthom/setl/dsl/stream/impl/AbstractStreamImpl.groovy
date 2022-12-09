@@ -1,5 +1,6 @@
 package as.williamthom.setl.dsl.stream.impl
 
+import as.williamthom.setl.dsl.stream.RowConsumer
 import java.lang.reflect.ParameterizedType
 
 abstract class AbstractStreamImpl<T extends AbstractStreamImplParams> {
@@ -20,4 +21,7 @@ abstract class AbstractStreamImpl<T extends AbstractStreamImplParams> {
 
     abstract void description()
 
+    abstract void process(RowConsumer consumer)
 }
+
+

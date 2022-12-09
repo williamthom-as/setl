@@ -1,6 +1,6 @@
 input {
     type(csv) {
-        filepath "some_file"
+        filepath "src/test/resources/unsectioned_csv.csv"
         headers 0
     }
 }
