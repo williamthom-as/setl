@@ -1,4 +1,4 @@
-package as.williamthom.setl.dsl.common
+package as.williamthom.setl.common
 
 trait FileSystemHelpers {
 

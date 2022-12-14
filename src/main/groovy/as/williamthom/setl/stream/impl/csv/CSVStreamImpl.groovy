@@ -1,8 +1,8 @@
-package as.williamthom.setl.dsl.stream.impl.csv
+package as.williamthom.setl.stream.impl.csv
 
-import as.williamthom.setl.dsl.common.FileSystemHelpers
-import as.williamthom.setl.dsl.stream.RowConsumer
-import as.williamthom.setl.dsl.stream.impl.AbstractStreamImpl
+import as.williamthom.setl.common.FileSystemHelpers
+import as.williamthom.setl.stream.RowConsumer
+import as.williamthom.setl.stream.impl.AbstractStreamImpl
 import com.opencsv.CSVReader
 import com.opencsv.CSVReaderBuilder
 import groovy.util.logging.Slf4j
@@ -26,7 +26,7 @@ class CSVStreamImpl extends AbstractStreamImpl<CSVStreamImplParams> implements F
             while ((row = reader.readNext()) != null) {
                 Map<String, String> rowValues = new HashMap<>()
 
-                headers.eachWithIndex{ String entry, int i ->
+                headers.eachWithIndex { String entry, int i ->
                     rowValues.put(entry, row[i])
                 }
 

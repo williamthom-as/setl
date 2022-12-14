@@ -1,6 +1,6 @@
-package as.williamthom.setl.dsl.stream.impl.csv
+package as.williamthom.setl.stream.impl.csv
 
-import as.williamthom.setl.dsl.stream.impl.AbstractStreamImplParams
+import as.williamthom.setl.stream.impl.AbstractStreamImplParams
 
 class CSVStreamImplParams extends AbstractStreamImplParams {
     String filepath

@@ -1,6 +1,6 @@
-package as.williamthom.setl.dsl.stream.impl
+package as.williamthom.setl.stream.impl
 
-import as.williamthom.setl.dsl.stream.RowConsumer
+import as.williamthom.setl.stream.RowConsumer
 import java.lang.reflect.ParameterizedType
 
 abstract class AbstractStreamImpl<T extends AbstractStreamImplParams> {

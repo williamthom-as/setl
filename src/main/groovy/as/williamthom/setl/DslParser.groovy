@@ -1,6 +1,6 @@
 package as.williamthom.setl
 
-import as.williamthom.setl.dsl.DslBuilder
+
 import org.codehaus.groovy.control.CompilerConfiguration
 
 class DslParser {

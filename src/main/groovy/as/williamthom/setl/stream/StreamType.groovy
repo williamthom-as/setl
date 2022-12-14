@@ -1,8 +1,8 @@
-package as.williamthom.setl.dsl.stream
+package as.williamthom.setl.stream
 
-import as.williamthom.setl.dsl.stream.impl.AbstractStreamImpl
-import as.williamthom.setl.dsl.stream.impl.csv.CSVStreamImpl
-import as.williamthom.setl.dsl.stream.impl.json.JSONStreamImpl
+import as.williamthom.setl.stream.impl.AbstractStreamImpl
+import as.williamthom.setl.stream.impl.csv.CSVStreamImpl
+import as.williamthom.setl.stream.impl.json.JSONStreamImpl
 
 enum StreamType {
     CSV(CSVStreamImpl),

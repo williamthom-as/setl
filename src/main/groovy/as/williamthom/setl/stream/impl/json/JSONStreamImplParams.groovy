@@ -1,6 +1,6 @@
-package as.williamthom.setl.dsl.stream.impl.json
+package as.williamthom.setl.stream.impl.json
 
-import as.williamthom.setl.dsl.stream.impl.AbstractStreamImplParams
+import as.williamthom.setl.stream.impl.AbstractStreamImplParams
 
 class JSONStreamImplParams extends AbstractStreamImplParams {
     String filepath
