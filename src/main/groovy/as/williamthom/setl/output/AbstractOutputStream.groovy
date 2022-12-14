@@ -1,4 +1,4 @@
-package as.williamthom.setl.outputstream
+package as.williamthom.setl.output
 
 import groovy.util.logging.Slf4j
 

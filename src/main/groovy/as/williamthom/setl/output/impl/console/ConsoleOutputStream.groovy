@@ -1,6 +1,6 @@
-package as.williamthom.setl.outputstream.impl.console
+package as.williamthom.setl.output.impl.console
 
-import as.williamthom.setl.outputstream.AbstractOutputStream
+import as.williamthom.setl.output.AbstractOutputStream
 
 class ConsoleOutputStream extends AbstractOutputStream<ConsoleOutputStreamParams> {
 

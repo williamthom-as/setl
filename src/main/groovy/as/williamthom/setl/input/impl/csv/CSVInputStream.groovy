@@ -1,8 +1,8 @@
-package as.williamthom.setl.inputstream.impl.csv
+package as.williamthom.setl.input.impl.csv
 
 import as.williamthom.setl.common.FileSystemHelpers
-import as.williamthom.setl.inputstream.ChunkedRowConsumer
-import as.williamthom.setl.inputstream.impl.AbstractInputStream
+import as.williamthom.setl.input.ChunkedRowConsumer
+import as.williamthom.setl.input.impl.AbstractInputStream
 import com.opencsv.CSVReader
 import com.opencsv.CSVReaderBuilder
 import groovy.util.logging.Slf4j

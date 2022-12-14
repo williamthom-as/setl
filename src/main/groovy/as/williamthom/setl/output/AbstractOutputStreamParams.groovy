@@ -1,3 +1,3 @@
-package as.williamthom.setl.outputstream
+package as.williamthom.setl.output
 
 abstract class AbstractOutputStreamParams {}

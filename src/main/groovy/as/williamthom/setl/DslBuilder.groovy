@@ -1,7 +1,7 @@
 package as.williamthom.setl
 
-import as.williamthom.setl.inputstream.InputStreamBuilder
-import as.williamthom.setl.outputstream.OutputStreamBuilder
+import as.williamthom.setl.input.InputStreamBuilder
+import as.williamthom.setl.output.OutputStreamBuilder
 
 class DslBuilder {
 

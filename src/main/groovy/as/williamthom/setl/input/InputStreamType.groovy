@@ -1,8 +1,8 @@
-package as.williamthom.setl.inputstream
+package as.williamthom.setl.input
 
-import as.williamthom.setl.inputstream.impl.AbstractInputStream
-import as.williamthom.setl.inputstream.impl.csv.CSVInputStream
-import as.williamthom.setl.inputstream.impl.json.JSONInputStream
+import as.williamthom.setl.input.impl.AbstractInputStream
+import as.williamthom.setl.input.impl.csv.CSVInputStream
+import as.williamthom.setl.input.impl.json.JSONInputStream
 
 enum InputStreamType {
     CSV(CSVInputStream),

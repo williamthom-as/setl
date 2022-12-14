@@ -1,6 +1,6 @@
-package as.williamthom.setl.outputstream
+package as.williamthom.setl.output
 
-import as.williamthom.setl.inputstream.InputStreamType
+import as.williamthom.setl.input.InputStreamType
 
 class OutputStreamBuilder {
 

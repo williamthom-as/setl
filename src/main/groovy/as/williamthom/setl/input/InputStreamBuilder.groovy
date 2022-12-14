@@ -1,4 +1,4 @@
-package as.williamthom.setl.inputstream
+package as.williamthom.setl.input
 
 class InputStreamBuilder {
 

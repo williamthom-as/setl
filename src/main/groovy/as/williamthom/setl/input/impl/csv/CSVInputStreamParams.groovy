@@ -1,6 +1,6 @@
-package as.williamthom.setl.inputstream.impl.csv
+package as.williamthom.setl.input.impl.csv
 
-import as.williamthom.setl.inputstream.impl.AbstractInputStreamParams
+import as.williamthom.setl.input.impl.AbstractInputStreamParams
 
 class CSVInputStreamParams extends AbstractInputStreamParams {
     String filepath

@@ -1,6 +1,6 @@
-package as.williamthom.setl.inputstream.impl
+package as.williamthom.setl.input.impl
 
-import as.williamthom.setl.inputstream.ChunkedRowConsumer
+import as.williamthom.setl.input.ChunkedRowConsumer
 import groovy.util.logging.Slf4j
 
 import java.lang.reflect.ParameterizedType

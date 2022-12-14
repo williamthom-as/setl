@@ -1,7 +1,7 @@
-package as.williamthom.setl.inputstream.impl.json
+package as.williamthom.setl.input.impl.json
 
-import as.williamthom.setl.inputstream.ChunkedRowConsumer
-import as.williamthom.setl.inputstream.impl.AbstractInputStream
+import as.williamthom.setl.input.ChunkedRowConsumer
+import as.williamthom.setl.input.impl.AbstractInputStream
 
 class JSONInputStream extends AbstractInputStream<JSONInputStreamParams> {
 

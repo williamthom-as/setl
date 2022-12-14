@@ -1,7 +1,7 @@
 package as.williamthom.setl
 
-import as.williamthom.setl.inputstream.InputStreamType
-import as.williamthom.setl.inputstream.impl.csv.CSVInputStreamParams
+import as.williamthom.setl.input.InputStreamType
+import as.williamthom.setl.input.impl.csv.CSVInputStreamParams
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
