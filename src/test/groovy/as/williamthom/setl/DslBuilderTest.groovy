@@ -1,8 +1,7 @@
 package as.williamthom.setl
 
-import as.williamthom.setl.stream.InputStreamBuilder
-import as.williamthom.setl.stream.StreamType
-import as.williamthom.setl.stream.impl.csv.CSVStreamImplParams
+import as.williamthom.setl.inputstream.InputStreamType
+import as.williamthom.setl.inputstream.impl.csv.CSVInputStreamParams
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -16,29 +15,29 @@ class DslBuilderTest {
         def output = new DslParser().parse(inputStream)
 
         Assertions.assertEquals(
-            StreamType.CSV,
+            InputStreamType.CSV,
             output.inputBuilder.streamType,
             "Should return CSV file type"
         )
 
         Assertions.assertEquals(
             "src/test/resources/unsectioned_csv.csv",
-            (output.inputBuilder.streamType.stream.params as CSVStreamImplParams).filepath ,
+            (output.inputBuilder.streamType.stream.params as CSVInputStreamParams).filepath ,
             "Should return CSV file location"
         )
-
-        output.inputBuilder.streamType.stream.process {
-//            println it
-        }
     }
 
     @Test
-    void test1() {
-        def inputBuilder = new InputStreamBuilder()
-        inputBuilder.type(StreamType.CSV) {
-            filepath "test"
+    void process() {
+        def inputStream = DslBuilderTest.getResourceAsStream("/TestConfig.groovy")
+        def output = new DslParser().parse(inputStream)
+
+        int lineCount = 0
+        output.inputBuilder.streamType.stream.process {
+            lineCount += it.size()
         }
 
-        inputBuilder.streamType.stream.description()
+        Assertions.assertEquals(lineCount, 8, "Should return all files from chunks")
     }
+
 }

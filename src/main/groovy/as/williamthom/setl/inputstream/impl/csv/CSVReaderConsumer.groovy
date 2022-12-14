@@ -1,4 +1,4 @@
-package as.williamthom.setl.stream.impl.csv
+package as.williamthom.setl.inputstream.impl.csv
 
 import com.opencsv.CSVReader
 

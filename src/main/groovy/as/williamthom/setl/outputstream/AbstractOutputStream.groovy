@@ -1,9 +1,11 @@
-package as.williamthom.setl.stream.impl
+package as.williamthom.setl.outputstream
 
-import as.williamthom.setl.stream.RowConsumer
+import groovy.util.logging.Slf4j
+
 import java.lang.reflect.ParameterizedType
 
-abstract class AbstractStreamImpl<T extends AbstractStreamImplParams> {
+@Slf4j
+abstract class AbstractOutputStream<T extends AbstractOutputStreamParams> {
 
     T params
 
@@ -19,9 +21,8 @@ abstract class AbstractStreamImpl<T extends AbstractStreamImplParams> {
         closure.call()
     }
 
-    abstract void description()
+    abstract void output()
 
-    abstract void process(RowConsumer consumer)
 }
 
 

@@ -1,14 +1,16 @@
-package as.williamthom.setl.stream.impl.csv
+package as.williamthom.setl.inputstream.impl.csv
 
 import as.williamthom.setl.common.FileSystemHelpers
-import as.williamthom.setl.stream.RowConsumer
-import as.williamthom.setl.stream.impl.AbstractStreamImpl
+import as.williamthom.setl.inputstream.ChunkedRowConsumer
+import as.williamthom.setl.inputstream.impl.AbstractInputStream
 import com.opencsv.CSVReader
 import com.opencsv.CSVReaderBuilder
 import groovy.util.logging.Slf4j
 
 @Slf4j
-class CSVStreamImpl extends AbstractStreamImpl<CSVStreamImplParams> implements FileSystemHelpers {
+class CSVInputStream extends AbstractInputStream<CSVInputStreamParams> implements FileSystemHelpers {
+
+    private static final int CHUNK_SIZE = 3
 
     @Override
     void description() {
@@ -16,21 +18,32 @@ class CSVStreamImpl extends AbstractStreamImpl<CSVStreamImplParams> implements F
     }
 
     @Override
-    void process(RowConsumer consumer) {
+    void process(ChunkedRowConsumer consumer) {
         log.info "Preparing CSV to stream from ${params.filepath}"
 
         withCSVReader() { CSVReader reader ->
             // Because we skip lines, we know headers will always be at 0
             String[] headers = reader.readNext()
             String[] row
+
+            List<Map<String, String>> chunk = []
+
             while ((row = reader.readNext()) != null) {
                 Map<String, String> rowValues = new HashMap<>()
-
                 headers.eachWithIndex { String entry, int i ->
                     rowValues.put(entry, row[i])
                 }
 
-                consumer.consume(rowValues)
+                chunk << rowValues
+
+                if (chunk.size() == CHUNK_SIZE) {
+                    consumer.consume(chunk)
+                    chunk = []
+                }
+            }
+
+            if (chunk.size() > 0) {
+                consumer.consume(chunk)
             }
         }
     }
