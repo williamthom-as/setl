@@ -11,6 +11,8 @@ repositories {
 
 dependencies {
     implementation 'org.apache.groovy:groovy:4.0.6'
+    implementation 'org.apache.groovy:groovy-json:4.0.6'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
     implementation 'com.opencsv:opencsv:5.7.1'
     implementation 'org.slf4j:slf4j-api:2.0.5'
     testImplementation 'org.slf4j:slf4j-log4j12:2.0.5'

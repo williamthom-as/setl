@@ -1,13 +1,20 @@
 package as.williamthom.setl.input.impl.csv
 
-import as.williamthom.setl.input.impl.AbstractInputStreamParams
+import as.williamthom.setl.stream.AbstractStreamParams
 
-class CSVInputStreamParams extends AbstractInputStreamParams {
+class CSVInputStreamParams extends AbstractStreamParams {
     String filepath
-    Integer headerRow
+    Integer chunk
+
+    Integer headerRow = 0
 
     CSVInputStreamParams filepath(String filepath) {
         this.filepath = filepath
+        return this
+    }
+
+    CSVInputStreamParams chunk(Integer chunk) {
+        this.chunk = chunk
         return this
     }
 
@@ -15,4 +22,5 @@ class CSVInputStreamParams extends AbstractInputStreamParams {
         this.headerRow = rowIdx
         return this
     }
+
 }

@@ -1,16 +1,13 @@
 package as.williamthom.setl.input.impl.csv
 
-import as.williamthom.setl.common.FileSystemHelpers
+import as.williamthom.setl.common.CSVHelpers
 import as.williamthom.setl.input.ChunkedRowConsumer
 import as.williamthom.setl.input.impl.AbstractInputStream
 import com.opencsv.CSVReader
-import com.opencsv.CSVReaderBuilder
 import groovy.util.logging.Slf4j
 
 @Slf4j
-class CSVInputStream extends AbstractInputStream<CSVInputStreamParams> implements FileSystemHelpers {
-
-    private static final int CHUNK_SIZE = 3
+class CSVInputStream extends AbstractInputStream<CSVInputStreamParams> implements CSVHelpers {
 
     @Override
     void description() {
@@ -21,11 +18,12 @@ class CSVInputStream extends AbstractInputStream<CSVInputStreamParams> implement
     void process(ChunkedRowConsumer consumer) {
         log.info "Preparing CSV to stream from ${params.filepath}"
 
-        withCSVReader() { CSVReader reader ->
+        withCSVReader(params.filepath, params.headerRow) { CSVReader reader ->
             // Because we skip lines, we know headers will always be at 0
             String[] headers = reader.readNext()
             String[] row
 
+            Integer defaultChunkSize = params.chunk ?: DEFAULT_CHUNK_SIZE
             List<Map<String, String>> chunk = []
 
             while ((row = reader.readNext()) != null) {
@@ -36,7 +34,7 @@ class CSVInputStream extends AbstractInputStream<CSVInputStreamParams> implement
 
                 chunk << rowValues
 
-                if (chunk.size() == CHUNK_SIZE) {
+                if (chunk.size() == defaultChunkSize) {
                     consumer.consume(chunk)
                     chunk = []
                 }
@@ -46,17 +44,6 @@ class CSVInputStream extends AbstractInputStream<CSVInputStreamParams> implement
                 consumer.consume(chunk)
             }
         }
-    }
-
-    <T> T withCSVReader(CSVReaderConsumer consumer) {
-        withFileAsInputStream(params.filepath) { InputStream is ->
-            CSVReaderBuilder readerBuilder = new CSVReaderBuilder(new InputStreamReader(is))
-            if (params.headerRow && params.headerRow > 0) {
-                readerBuilder.withSkipLines(params.headerRow)
-            }
-
-            consumer.consume(readerBuilder.build())
-        } as T
     }
 }
 

@@ -10,5 +10,7 @@ class InputStreamBuilder {
     }
 
     // Supported stream types
+    // D1: How can we avoid having to specify here?
     final InputStreamType csv = InputStreamType.CSV
+    final InputStreamType json = InputStreamType.JSON
 }
