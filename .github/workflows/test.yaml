@@ -13,6 +13,6 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: 11
+          distribution: openjdk11
       - name: Run Gradle test task
         run: gradle test
