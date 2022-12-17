@@ -50,7 +50,6 @@ class DslBuilderTest {
         output.inputBuilder.streamType.stream.process {
             lineCount += it.size()
         }
-
     }
 
     @Test
