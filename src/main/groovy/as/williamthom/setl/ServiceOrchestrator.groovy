@@ -3,12 +3,12 @@ package as.williamthom.setl
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class ServiceController {
+class ServiceOrchestrator {
     ExecutorService executorService
 
     private static final int MAX_THREAD_COUNT = 10
 
-    ServiceController() {
+    ServiceOrchestrator() {
         this.executorService = Executors.newFixedThreadPool(MAX_THREAD_COUNT)
     }
 

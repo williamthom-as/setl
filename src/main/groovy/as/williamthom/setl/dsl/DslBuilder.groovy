@@ -1,4 +1,4 @@
-package as.williamthom.setl
+package as.williamthom.setl.dsl
 
 import as.williamthom.setl.input.InputStreamBuilder
 import as.williamthom.setl.output.OutputStreamBuilder

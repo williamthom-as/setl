@@ -1,5 +1,6 @@
 package as.williamthom.setl
 
+import as.williamthom.setl.dsl.DslParser
 import as.williamthom.setl.input.InputStreamType
 import as.williamthom.setl.input.impl.csv.CSVInputStreamParams
 import as.williamthom.setl.input.impl.json.JSONInputStreamParams
