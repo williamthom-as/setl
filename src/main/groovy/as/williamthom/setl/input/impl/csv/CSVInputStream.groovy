@@ -3,6 +3,7 @@ package as.williamthom.setl.input.impl.csv
 import as.williamthom.setl.common.CSVHelpers
 import as.williamthom.setl.input.ChunkedRowConsumer
 import as.williamthom.setl.input.AbstractInputStream
+import as.williamthom.setl.input.RowRecord
 import com.opencsv.CSVReader
 import groovy.util.logging.Slf4j
 
@@ -24,7 +25,7 @@ class CSVInputStream extends AbstractInputStream<CSVInputStreamParams> implement
             String[] row
 
             Integer defaultChunkSize = params.chunk ?: DEFAULT_CHUNK_SIZE
-            List<Map<String, String>> chunk = []
+            List<RowRecord> chunk = []
 
             while ((row = reader.readNext()) != null) {
                 Map<String, String> rowValues = new HashMap<>()
@@ -32,7 +33,7 @@ class CSVInputStream extends AbstractInputStream<CSVInputStreamParams> implement
                     rowValues.put(entry, row[i])
                 }
 
-                chunk << rowValues
+                chunk << new RowRecord(rowValues)
 
                 if (chunk.size() == defaultChunkSize) {
                     consumer.consume(chunk)

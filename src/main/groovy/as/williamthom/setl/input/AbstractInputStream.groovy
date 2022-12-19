@@ -27,7 +27,7 @@ abstract class AbstractInputStream<T extends AbstractStreamParams> extends Abstr
 
     abstract void description()
 
-    abstract void process(ChunkedRowConsumer consumer)
+    abstract protected void process(ChunkedRowConsumer consumer)
 }
 
 
