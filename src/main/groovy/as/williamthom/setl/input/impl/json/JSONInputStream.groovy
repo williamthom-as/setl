@@ -2,10 +2,11 @@ package as.williamthom.setl.input.impl.json
 
 import as.williamthom.setl.common.JSONHelpers
 import as.williamthom.setl.input.ChunkedRowConsumer
-import as.williamthom.setl.input.impl.AbstractInputStream
+import as.williamthom.setl.input.AbstractInputStream
 import com.fasterxml.jackson.core.TreeNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.util.logging.Slf4j
+import java.util.concurrent.BlockingQueue
 
 
 @Slf4j

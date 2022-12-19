@@ -13,6 +13,13 @@ class ServiceOrchestrator {
     }
 
     void initialize() {
+        Runnable mainTask = new Runnable() {
+
+            @Override
+            void run() {
+
+            }
+        }
 //        this.process { chunkedRows ->
 //            executorService.execute {
 //                log.debug(chunkedRows.size().toString())

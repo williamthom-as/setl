@@ -1,6 +1,6 @@
-package as.williamthom.setl
+package as.williamthom.setl.dsl
 
-import as.williamthom.setl.dsl.DslParser
+
 import as.williamthom.setl.input.InputStreamType
 import as.williamthom.setl.input.impl.csv.CSVInputStreamParams
 import as.williamthom.setl.input.impl.json.JSONInputStreamParams
@@ -36,34 +36,16 @@ class DslBuilderTest {
         def output = new DslParser().parse(inputStream)
 
         Assertions.assertEquals(
-                InputStreamType.JSON,
-                output.inputBuilder.streamType,
-                "Should return JSON file type"
+            InputStreamType.JSON,
+            output.inputBuilder.streamType,
+            "Should return JSON file type"
         )
 
         Assertions.assertEquals(
-                "src/test/resources/json_test_file.json",
-                (output.inputBuilder.streamType.stream.params as JSONInputStreamParams).filepath ,
-                "Should return JSON file location"
+            "src/test/resources/json_test_file.json",
+            (output.inputBuilder.streamType.stream.params as JSONInputStreamParams).filepath ,
+            "Should return JSON file location"
         )
-
-        int lineCount = 0
-        output.inputBuilder.streamType.stream.process {
-            lineCount += it.size()
-        }
-    }
-
-    @Test
-    void process() {
-        def inputStream = DslBuilderTest.getResourceAsStream("/TestCSVConfig.groovy")
-        def output = new DslParser().parse(inputStream)
-
-        int lineCount = 0
-        output.inputBuilder.streamType.stream.process {
-            lineCount += it.size()
-        }
-
-        Assertions.assertEquals(lineCount, 8, "Should return all files from chunks")
     }
 
 }

@@ -2,7 +2,7 @@ package as.williamthom.setl.input.impl.csv
 
 import as.williamthom.setl.common.CSVHelpers
 import as.williamthom.setl.input.ChunkedRowConsumer
-import as.williamthom.setl.input.impl.AbstractInputStream
+import as.williamthom.setl.input.AbstractInputStream
 import com.opencsv.CSVReader
 import groovy.util.logging.Slf4j
 

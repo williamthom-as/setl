@@ -1,6 +1,6 @@
 package as.williamthom.setl.input
 
-import as.williamthom.setl.input.impl.AbstractInputStream
+
 import as.williamthom.setl.input.impl.csv.CSVInputStream
 import as.williamthom.setl.input.impl.json.JSONInputStream
 
