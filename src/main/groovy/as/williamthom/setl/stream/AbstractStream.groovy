@@ -5,7 +5,7 @@ import groovy.util.logging.Slf4j
 import java.lang.reflect.ParameterizedType
 
 @Slf4j
-abstract class AbstractStream<T extends AbstractStreamParams> {
+abstract class AbstractStream<T extends AbstractStreamParams> extends Thread {
 
     T params
 
@@ -20,6 +20,9 @@ abstract class AbstractStream<T extends AbstractStreamParams> {
         closure.resolveStrategy = Closure.DELEGATE_FIRST
         closure.call()
     }
+
+    abstract String getStreamName()
+
 }
 
 

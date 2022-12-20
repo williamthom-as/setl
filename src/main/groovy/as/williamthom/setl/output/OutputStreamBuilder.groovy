@@ -1,16 +1,16 @@
 package as.williamthom.setl.output
 
-import as.williamthom.setl.input.InputStreamType
-
 class OutputStreamBuilder {
 
-    InputStreamType streamType
+    OutputStreamType streamType
 
-    void type(InputStreamType streamType, final Closure closure) {
+    void type(OutputStreamType streamType, final Closure closure) {
         this.streamType = streamType
         this.streamType.setImplParams(closure)
     }
 
     // Supported stream types
-    final InputStreamType csv = InputStreamType.CSV
+    final OutputStreamType console = OutputStreamType.Console
+    final OutputStreamType csv = OutputStreamType.CSV
+
 }

@@ -1,8 +1,13 @@
+//options {
+//    queueLimit(200)
+//
+//}
+
 input {
     type(csv) {
         filepath "src/test/resources/unsectioned_csv.csv"
         headers 0
-        chunk 5
+        chunk 200
     }
 }
 
@@ -15,5 +20,7 @@ input {
 //}
 
 output {
-
+    type(csv) {
+        filepath "/tmp/setl.csv"
+    }
 }

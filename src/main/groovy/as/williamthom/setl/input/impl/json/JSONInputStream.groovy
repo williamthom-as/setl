@@ -38,5 +38,10 @@ class JSONInputStream extends AbstractInputStream<JSONInputStreamParams> impleme
             consumer.consume(chunk)
         }
     }
+
+    @Override
+    String getStreamName() {
+        return "JSON"
+    }
 }
 

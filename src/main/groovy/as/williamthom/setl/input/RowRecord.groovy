@@ -11,7 +11,7 @@ class RowRecord {
         return this.content.keySet()
     }
 
-    List<Object> getRowObjects() {
-        return this.content.values()
+    String[] getRowObjects() {
+        return (this.content.values() as List<Object>).collect { it.toString() }.toArray() as String[]
     }
 }

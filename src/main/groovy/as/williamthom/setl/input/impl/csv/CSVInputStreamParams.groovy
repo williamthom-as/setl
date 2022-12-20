@@ -22,5 +22,4 @@ class CSVInputStreamParams extends AbstractStreamParams {
         this.headerRow = rowIdx
         return this
     }
-
 }
