@@ -40,6 +40,11 @@ class JSONInputStream extends AbstractInputStream<JSONInputStreamParams> impleme
     }
 
     @Override
+    protected void finish() {
+
+    }
+
+    @Override
     String getStreamName() {
         return "JSON"
     }

@@ -5,6 +5,7 @@ import as.williamthom.setl.stream.AbstractStreamParams
 import groovy.util.logging.Slf4j
 
 import java.util.concurrent.BlockingQueue
+import java.util.concurrent.CountDownLatch
 
 @Slf4j
 abstract class AbstractInputStream<T extends AbstractStreamParams> extends AbstractStream<T> {
@@ -12,20 +13,29 @@ abstract class AbstractInputStream<T extends AbstractStreamParams> extends Abstr
     protected static final int DEFAULT_CHUNK_SIZE = 3
 
     protected BlockingQueue<List<RowRecord>> transformQueue
+    protected CountDownLatch latch
 
-    AbstractInputStream<T> initialize(BlockingQueue<List<RowRecord>> transformQueue) {
+    AbstractInputStream<T> initialize(BlockingQueue<List<RowRecord>> transformQueue, CountDownLatch latch) {
         log.info("Initializing ${streamName} stream ...")
 
         this.transformQueue = transformQueue
+        this.latch = latch
+
         return this
     }
 
     void setup() {}
 
     void run() {
-        process { List<RowRecord> chunk ->
-            log.debug("Placing chunk [${chunk.size()}] on transform queue")
-            transformQueue.put(chunk)
+        try {
+            latch.await()
+
+            process { List<RowRecord> chunk ->
+                log.debug("Placing chunk [${chunk.size()}] on transform queue")
+                transformQueue.put(chunk)
+            }
+        } catch (InterruptedException e) {
+            log.error("Interrupt occured in output stream", e)
         }
     }
 

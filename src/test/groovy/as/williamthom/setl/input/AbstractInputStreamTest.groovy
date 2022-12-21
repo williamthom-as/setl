@@ -3,9 +3,12 @@ package as.williamthom.setl.input
 import as.williamthom.setl.dsl.DslParser
 import as.williamthom.setl.input.impl.csv.CSVInputStream
 import as.williamthom.setl.output.impl.csv.CSVOutputStream
+import as.williamthom.setl.stream.AbstractStream
+import as.williamthom.setl.stream.StreamLifecycleManager
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
+import java.util.concurrent.CountDownLatch
 import java.util.concurrent.LinkedBlockingQueue
 
 class AbstractInputStreamTest {
@@ -19,15 +22,25 @@ class AbstractInputStreamTest {
         CSVInputStream inputStream = parse.inputBuilder.streamType.stream as CSVInputStream
         CSVOutputStream outputStream = parse.outputBuilder.streamType.stream as CSVOutputStream
 
+        CountDownLatch latch = new CountDownLatch(2)
         LinkedBlockingQueue<List<RowRecord>> queue = new LinkedBlockingQueue<List<RowRecord>>(100)
 
-        inputStream.initialize(queue)
-        outputStream.initialize(queue)
+        inputStream.initialize(queue, latch)
+        outputStream.initialize(queue, latch)
 
-        inputStream.start()
-        sleep(1000)
+        StreamLifecycleManager.handle(inputStream) { AbstractStream stream ->
+//            stream.join(50)
+            latch.countDown()
+        }
 
-        outputStream.start()
+//        sleep(50)
+
+        StreamLifecycleManager.handle(outputStream) { AbstractStream stream ->
+//            stream.join()
+            latch.countDown()
+        }
+
+//        outputStream.start()
 
         inputStream.join()
         outputStream.join()

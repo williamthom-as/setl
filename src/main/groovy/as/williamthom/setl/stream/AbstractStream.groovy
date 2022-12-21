@@ -23,6 +23,10 @@ abstract class AbstractStream<T extends AbstractStreamParams> extends Thread {
 
     abstract String getStreamName()
 
+    abstract protected void setup()
+
+    abstract protected void finish()
+
 }
 
 

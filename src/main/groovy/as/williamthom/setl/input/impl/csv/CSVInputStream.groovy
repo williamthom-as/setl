@@ -51,5 +51,10 @@ class CSVInputStream extends AbstractInputStream<CSVInputStreamParams> implement
     String getStreamName() {
         return "CSV"
     }
+
+    @Override
+    protected void finish() {
+
+    }
 }
 

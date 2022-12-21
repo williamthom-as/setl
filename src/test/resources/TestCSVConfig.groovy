@@ -7,7 +7,7 @@ input {
     type(csv) {
         filepath "src/test/resources/unsectioned_csv.csv"
         headers 0
-        chunk 200
+        chunk 1
     }
 }
 
