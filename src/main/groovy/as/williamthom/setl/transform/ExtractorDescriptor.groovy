@@ -2,8 +2,8 @@ package as.williamthom.setl.transform
 
 class ExtractorDescriptor {
 
-    int colIndex
+    String propertyName
     String targetColumn
-    List<Transform> transforms
+//    List<Transform> transforms
 
 }

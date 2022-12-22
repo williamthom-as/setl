@@ -7,6 +7,7 @@ class TransformBuilder {
     ExtractorBuilder identity(String propertyName) {
         def builder = new ExtractorBuilder(propertyName: propertyName)
         extractorBuilders << builder
+
         return builder
     }
 

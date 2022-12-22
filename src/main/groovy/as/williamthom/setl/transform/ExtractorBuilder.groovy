@@ -1,27 +1,29 @@
 package as.williamthom.setl.transform
 
+import as.williamthom.setl.transform.action.Action
+import as.williamthom.setl.transform.action.CapitalizeAction
+
 class ExtractorBuilder {
     String propertyName
     String targetColumn
-//    List<Transform> transforms = []
+    List<Action> actions = []
 
     ExtractorBuilder to(String targetColumn) {
         this.targetColumn = targetColumn
         return this
     }
 
-//    ExtractorBuilder capture(String regex, String defaultValue = null) {
-//        transforms << new RegexTransform(regex, defaultValue)
-//        return this
-//    }
-//
-//    ExtractorBuilder custom(Closure customExtractor) {
-//        transforms << new CustomTransformer(customExtractor)
-//        return this
-//    }
+    ExtractorBuilder capitalize() {
+        actions << new CapitalizeAction()
+        return this
+    }
+
+    ExtractorBuilder extract(String type) {
+        return this
+    }
 
     ExtractorDescriptor build() {
-        return new ExtractorDescriptor(colIndex: colIndex, targetColumn: targetColumn, transforms: transforms)
+//        return new ExtractorDescriptor(colIndex: colIndex, targetColumn: targetColumn, transforms: transforms)
     }
 
 }
