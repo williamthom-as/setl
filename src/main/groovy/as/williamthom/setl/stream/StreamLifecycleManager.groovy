@@ -5,11 +5,11 @@ class StreamLifecycleManager {
     static <T> T handle(AbstractStream stream, StreamConsumer<T> streamConsumer) {
         try {
             stream.setup()
-            stream.start()
+            stream.start() // Thread.start()
 
             streamConsumer.consume(stream)
         } finally {
-            stream.finish()
+//            stream.finish()
         }
     }
 

@@ -15,11 +15,16 @@ abstract class AbstractInputStream<T extends AbstractStreamParams> extends Abstr
     protected BlockingQueue<List<RowRecord>> transformQueue
     protected CountDownLatch latch
 
-    AbstractInputStream<T> initialize(BlockingQueue<List<RowRecord>> transformQueue, CountDownLatch latch) {
+    AbstractInputStream<T> initialize(
+        BlockingQueue<List<RowRecord>> transformQueue,
+        CountDownLatch latch
+    ) {
         log.info("Initializing ${streamName} stream ...")
 
         this.transformQueue = transformQueue
         this.latch = latch
+
+        setup()
 
         return this
     }
@@ -27,6 +32,8 @@ abstract class AbstractInputStream<T extends AbstractStreamParams> extends Abstr
     void setup() {}
 
     void run() {
+        log.debug("Run called on input stream [${streamName}]")
+
         try {
             latch.await()
 
@@ -35,11 +42,9 @@ abstract class AbstractInputStream<T extends AbstractStreamParams> extends Abstr
                 transformQueue.put(chunk)
             }
         } catch (InterruptedException e) {
-            log.error("Interrupt occured in output stream", e)
+            log.error("Interrupt occurred in output stream", e)
         }
     }
-
-    abstract void description()
 
     abstract protected void process(ChunkedRowConsumer consumer)
 }

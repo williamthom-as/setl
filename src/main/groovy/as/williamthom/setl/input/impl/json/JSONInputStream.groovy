@@ -12,11 +12,6 @@ import groovy.util.logging.Slf4j
 class JSONInputStream extends AbstractInputStream<JSONInputStreamParams> implements JSONHelpers {
 
     @Override
-    void description() {
-        log.info "JSON stream configured with ${params.filepath}"
-    }
-
-    @Override
     void process(ChunkedRowConsumer consumer) {
         log.info "Preparing JSON stream from ${params.filepath}"
         ObjectMapper mapper = new ObjectMapper()

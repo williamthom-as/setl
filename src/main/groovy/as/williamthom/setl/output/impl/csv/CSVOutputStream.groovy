@@ -31,17 +31,18 @@ class CSVOutputStream extends AbstractOutputStream<CSVOutputStreamParams> {
         lock.acquire()
 
         try {
-//            if (rowCount == 0) {
-//                log.debug("First here, set headers")
-//
-//                csvWriter.writeNext(rowRecords.first().getRowKeys() as String[])
-//                rowCount++
-//            }
+            if (rowCount == 0) {
+                log.debug("First here, set headers")
+
+                def first = rowRecords.pop()
+                csvWriter.writeNext(first.getRowKeys().toArray() as String[])
+
+                rowCount++
+            }
 
             log.debug("Writing lines to CSV")
             rowRecords.each { RowRecord record ->
-                def list = record.getRowObjects()
-
+                String[] list = record.getRowObjects().collect { it.toString() }.toArray() as String[]
                 csvWriter.writeNext(list)
             }
         } finally {
@@ -51,6 +52,7 @@ class CSVOutputStream extends AbstractOutputStream<CSVOutputStreamParams> {
 
     @Override
     protected void finish() {
+        log.debug("Closing off CSV file")
         this.csvWriter.close()
     }
 

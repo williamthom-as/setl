@@ -11,11 +11,6 @@ import groovy.util.logging.Slf4j
 class CSVInputStream extends AbstractInputStream<CSVInputStreamParams> implements CSVHelpers {
 
     @Override
-    void description() {
-        log.info "CSV stream configured with ${params.filepath}"
-    }
-
-    @Override
     void process(ChunkedRowConsumer consumer) {
         log.info "Preparing CSV to stream from ${params.filepath}"
 

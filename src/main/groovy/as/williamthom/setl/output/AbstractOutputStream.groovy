@@ -14,7 +14,10 @@ abstract class AbstractOutputStream<T extends AbstractStreamParams> extends Abst
     protected BlockingQueue<List<RowRecord>> exportQueue
     protected CountDownLatch latch
 
-    AbstractOutputStream<T> initialize(BlockingQueue<List<RowRecord>> exportQueue, CountDownLatch latch) {
+    AbstractOutputStream<T> initialize(
+        BlockingQueue<List<RowRecord>> exportQueue,
+        CountDownLatch latch
+    ) {
         log.info("Initializing ${streamName} stream ...")
 
         this.exportQueue = exportQueue
@@ -26,17 +29,22 @@ abstract class AbstractOutputStream<T extends AbstractStreamParams> extends Abst
     }
 
     void run() {
+        log.debug("Run called on output stream [${streamName}]")
+
         try {
             latch.await()
 
-            while (!exportQueue.isEmpty()) {
+            Integer x = 0
+            while (x == 0 || !exportQueue.isEmpty()) {
                 log.debug("Taking chunk off transform queue [${exportQueue.size()}]")
+
+                x++
 
                 List<RowRecord> chunk = exportQueue.take()
                 process(chunk)
             }
         } catch (InterruptedException e) {
-            log.error("Interrupt occured in output stream", e)
+            log.error("Interrupt occurred in output stream", e)
         }
     }
 

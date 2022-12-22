@@ -8,10 +8,10 @@ class RowRecord {
     }
 
     List<String> getRowKeys() {
-        return this.content.keySet()
+        return this.content.keySet() as List<String>
     }
 
-    String[] getRowObjects() {
-        return (this.content.values() as List<Object>).collect { it.toString() }.toArray() as String[]
+    List<Object> getRowObjects() {
+        return this.content.values() as List<Object>
     }
 }
