@@ -12,3 +12,19 @@ class CapitalizeAction implements Action {
         return null
     }
 }
+
+class LowerCaseAction implements Action {
+
+    @Override
+    Object transform(Object source) {
+        return null
+    }
+}
+
+class ShortenAction implements Action {
+
+    @Override
+    Object transform(Object source) {
+        return null
+    }
+}
