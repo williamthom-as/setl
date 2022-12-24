@@ -4,10 +4,12 @@ import as.williamthom.setl.transform.action.Action
 import as.williamthom.setl.transform.action.CapitalizeAction
 import as.williamthom.setl.transform.action.LowerCaseAction
 import as.williamthom.setl.transform.action.ShortenAction
+import as.williamthom.setl.transform.extract.AbstractExtractType
 
 class ExtractorBuilder {
     String propertyName
     String targetColumn
+    ExtractType extract
     List<Action> actions = []
 
     ExtractorBuilder to(String targetColumn) {
@@ -30,7 +32,8 @@ class ExtractorBuilder {
         return this
     }
 
-    ExtractorBuilder extract(String type) {
+    ExtractorBuilder extract(ExtractType type, Map params = [:]) {
+        this.extract = type
         return this
     }
 

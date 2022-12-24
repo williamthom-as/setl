@@ -17,4 +17,7 @@ class TransformBuilder {
         }
     }
 
+    final ExtractType all = ExtractType.All
+    final ExtractType regex = ExtractType.Regex
+
 }
