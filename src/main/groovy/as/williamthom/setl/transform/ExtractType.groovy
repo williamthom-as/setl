@@ -14,4 +14,8 @@ enum ExtractType {
         this.type = type.getDeclaredConstructor().newInstance()
     }
 
+    void setParams(Map params) {
+        this.type.setParams(params)
+    }
+
 }

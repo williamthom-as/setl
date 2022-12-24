@@ -12,6 +12,13 @@ class ExtractorBuilder {
     ExtractType extract
     List<Action> actions = []
 
+    ExtractorBuilder extract(ExtractType type, Map params = [:]) {
+        type.setParams(params)
+        this.extract = type
+
+        return this
+    }
+
     ExtractorBuilder to(String targetColumn) {
         this.targetColumn = targetColumn
         return this
@@ -29,11 +36,6 @@ class ExtractorBuilder {
 
     ExtractorBuilder shorten(int length) {
         actions << new ShortenAction()
-        return this
-    }
-
-    ExtractorBuilder extract(ExtractType type, Map params = [:]) {
-        this.extract = type
         return this
     }
 
