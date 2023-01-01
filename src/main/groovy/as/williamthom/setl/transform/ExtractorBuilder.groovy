@@ -4,7 +4,6 @@ import as.williamthom.setl.transform.action.Action
 import as.williamthom.setl.transform.action.CapitalizeAction
 import as.williamthom.setl.transform.action.LowerCaseAction
 import as.williamthom.setl.transform.action.ShortenAction
-import as.williamthom.setl.transform.extract.AbstractExtractType
 
 class ExtractorBuilder {
     String propertyName
@@ -40,7 +39,7 @@ class ExtractorBuilder {
     }
 
     ExtractorDescriptor build() {
-//        return new ExtractorDescriptor(colIndex: colIndex, targetColumn: targetColumn, transforms: transforms)
+        return new ExtractorDescriptor(propertyName: propertyName, targetColumn: targetColumn, actions: actions)
     }
 
 }
