@@ -15,6 +15,3 @@ class StreamLifecycleManager {
 
 }
 
-interface StreamConsumer<T> {
-    T consume(AbstractStream stream)
-}
